@@ -91,6 +91,7 @@ export interface Settings {
   },
   waystone: {
     resultSettings: ResultSettings,
+    compactView: boolean,
     tier: {
       min: number,
       max: number,
@@ -99,16 +100,22 @@ export interface Settings {
       corrupted: boolean,
       uncorrupted: boolean,
     },
+    numericProperties: {
+      matchType: string,
+      minPackSize: number,
+      minMagicMonsters: number,
+      minItemRarity: number,
+      minRareMonsters: number,
+      minRevivesAvailable: number,
+      minWaystoneDropChance: number,
+    },
     modifier: {
       over100: boolean,
       round10: boolean,
-      dropOverX: boolean,
-      dropOverValue: number,
-      delirious: boolean,
-      anyPack: boolean,
-      prefixSelectType: string,
-      prefixes: SelectOption[],
-      suffixes: SelectOption[],
+      excludeSelectType: string,
+      excludedModifiers: SelectOption[],
+      wantedModifiers: SelectOption[],
+      wantedModifierSelectType: string,
     }
   },
   tablet: {
@@ -221,6 +228,7 @@ export const defaultSettings: Settings = {
   },
   waystone: {
     resultSettings: defaultResultSettings,
+    compactView: true,
     tier: {
       min: 1,
       max: 16,
@@ -229,16 +237,22 @@ export const defaultSettings: Settings = {
       corrupted: false,
       uncorrupted: false,
     },
+    numericProperties: {
+      matchType: "any",
+      minPackSize: 0,
+      minMagicMonsters: 0,
+      minItemRarity: 0,
+      minRareMonsters: 0,
+      minRevivesAvailable: 0,
+      minWaystoneDropChance: 0,
+    },
     modifier: {
       over100: false,
       round10: true,
-      dropOverX: false,
-      dropOverValue: 200,
-      delirious: false,
-      anyPack: false,
-      prefixSelectType: "any",
-      prefixes: [],
-      suffixes: [],
+      excludeSelectType: "any",
+      excludedModifiers: [],
+      wantedModifiers: [],
+      wantedModifierSelectType: "any",
     }
   },
   tablet: {

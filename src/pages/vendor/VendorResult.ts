@@ -45,7 +45,7 @@ function resistances(settings: Settings["vendor"]["resistances"]): string | null
   ].filter((e) => e !== null);
 
   if (res.length === 0) return null;
-  if (res.length === 4) return `resi`;
+  if (res.length === 4) return `esi`;
   if (res.length > 1) return `(${res.join("|")}).+res`;
 
   return `${res.join("|")}.+res`
@@ -65,8 +65,8 @@ function movement(settings: Settings["vendor"]["movementSpeed"]): string | null 
 
   const numOfSelected = move0.length + move5.length;
   if (numOfSelected === 0) return null;
-  if (numOfSelected === 1) return `${[move0, move5].join("")}% i.+mov`;
-  if (numOfSelected === 5) return `\\d+% i.+mov`;
+  if (numOfSelected === 1) return `${[move0, move5].join("")}% .+mov`;
+  if (numOfSelected === 5) return `\\d+% .+mov`;
 
   const zeros = move0.length > 1 ?
     `[${move0.map((e) => e[0]).join("")}]0`
@@ -74,7 +74,7 @@ function movement(settings: Settings["vendor"]["movementSpeed"]): string | null 
   const fives = move5.length > 1 ?
     `[${move5.map((e) => e[0]).join("")}]5`
     : move5.join("|");
-  return `(${[zeros, fives].filter((e) => e !== null && e !== "").join("|")})% i.+mov`;
+  return `(${[zeros, fives].filter((e) => e !== null && e !== "").join("|")})% .+mov`;
 }
 
 function itemMods(settings: Settings["vendor"]["itemMods"]): (string | null)[] {
@@ -91,10 +91,10 @@ function itemMods(settings: Settings["vendor"]["itemMods"]): (string | null)[] {
     settings.physical ? "ph.*da" : null,
     eleDamage ? `\\d ${eleString}.+da` : null,
     settings.skillLevel ? "^\\+.*ills$" : null,
-    settings.spirit ? "spiri" : null,
-    settings.rarity ? "d rari" : null,
-    settings.attackSpeed ? "ck spe" : null,
-    settings.castSpeed ? "st spe" : null,
+    settings.spirit ? "piri" : null,
+    settings.rarity ? "rari" : null,
+    settings.attackSpeed ? "k spe" : null,
+    settings.castSpeed ? "t spe" : null,
     settings.maxLife ? "\\d.+life" : null,
     settings.maxMana ? "\\d.+mana" : null,
   ].filter((e) => e !== null)
@@ -129,11 +129,11 @@ function itemClass(settings: Settings["vendor"]["itemClass"]): string | null {
 }
 
 function itemLevel(settings: Settings["vendor"]["itemLevel"]): string | null {
-  return createLevelRangeRegex(settings.min, settings.max, "m level: ");
+  return createLevelRangeRegex(settings.min, settings.max, "m lev: ");
 }
 
 function characterLevel(settings: Settings["vendor"]["characterLevel"]): string | null {
-  return createLevelRangeRegex(settings.min, settings.max, "s: level ");
+  return createLevelRangeRegex(settings.min, settings.max, "s: lev ");
 }
 
 function createLevelRangeRegex(min: number, max: number, prefix: string): string | null {
