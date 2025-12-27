@@ -206,7 +206,7 @@ function generateNumericProperties(
 }
 
 // Generates optimized number pattern for waystone tooltip format
-function generateWaystoneNumberPattern(minValue: number, over100: boolean): string {
+function generateWaystoneNumberPattern(minValue: number, _over100: boolean): string {
   if (minValue <= 0) return "";
   
   // For values >= 100, use pattern like (1\d{2,}|\d{4,})
